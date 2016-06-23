@@ -1,0 +1,35 @@
+{
+	"name": "tobiasoberrauch/flow",
+	"description": "Flow helps you declare, manage and install dependencies",
+	"type": "library",
+	"authors": [
+		{
+			"name": "Flow",
+			"email": "flow@uidriven.com"
+		}
+	],
+	"bin": [
+		"bin/flow"
+	],
+	"require": {
+		"symfony/console": "^3.1",
+		"composer/composer": "^1.1"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Flow\\": "src/Flow"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"FlowIntegrationTest\\": "tests/integration/Flow",
+			"FlowUnitTest\\": "tests/unit/Flow"
+		}
+	},
+	"scripts": {
+		"test": "phpunit"
+	}
+}
