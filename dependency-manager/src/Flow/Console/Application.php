@@ -2,9 +2,9 @@
 
 namespace Flow\Console;
 
-use Composer\IO\ConsoleIO;
 use Composer\IO\IOInterface;
 use Exception;
+use Flow\Command\DockerCommand;
 use Flow\Command\InitCommand;
 use Flow\Flow;
 use Symfony\Component\Console\Application as BaseApplication;
@@ -52,19 +52,11 @@ class Application extends BaseApplication
 
 	public function doRun(InputInterface $input, OutputInterface $output)
 	{
-		$io = $this->io = new ConsoleIO($input, $output, $this->getHelperSet());
-
-
-		$firstArgument = $this->getCommandName($input);
-		$command = $this->find($firstArgument);
-		$commandName = $command->getName();
-
 		try {
 			$result = parent::doRun($input, $output);
-			
+
 			return $result;
 		} catch (Exception $e) {
-			restore_error_handler();
 			throw $e;
 		}
 	}
@@ -73,6 +65,7 @@ class Application extends BaseApplication
 	{
 		$commands = array_merge(parent::getDefaultCommands(), array(
 			new InitCommand(),
+			new DockerCommand(),
 		));
 		if ('phar:' === substr(__FILE__, 0, 5)) {
 		}

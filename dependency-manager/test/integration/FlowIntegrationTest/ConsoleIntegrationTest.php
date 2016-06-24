@@ -21,18 +21,10 @@ class ConsoleIntegrationTest extends TestCase
 {
     public function test()
     {
-		$application = $this->getMockBuilder(Application::class)
-			->setMethods(array('getCommandName'))
-			->getMock();
-
-		$application
-			->method('getCommandName')
-			->willReturn('init');
-
 		/** @var Application $application */
 		$application = new Application();
 
-		$argvInput = new ArgvInput(array('cli.php', 'init'));
+		$argvInput = new ArgvInput(array('cli.php', 'docker'));
         $application->run($argvInput);
     }
 }
