@@ -1,0 +1,22 @@
+{
+  "name": "calendar",
+  "dependencies": {
+    "moment": "",
+    "fullcalendar": "",
+    "ui.calendar": ""
+  },
+  "models": {
+    "event": "dev-master"
+  },
+  "config": {
+    "title": {
+      "type": "string"
+    },
+    "start": {
+      "type": "date"
+    }
+  },
+  "run": {
+    "env": [""]
+  }
+}
