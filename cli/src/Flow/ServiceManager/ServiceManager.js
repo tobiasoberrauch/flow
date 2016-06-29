@@ -1,12 +1,11 @@
-import FlowMap from "../DataType/FlowMap";
 import ServiceNotFoundException from "./Exception/ServiceNotFoundException";
 import ClassLoader from "./../Loader/ClassLoader";
 
 class ServiceManager {
     constructor(config = null) {
         this.abstractFactories = [];
-        this.aliases = new FlowMap();
-        this.canonicalNames = new FlowMap();
+        this.aliases = new Map();
+        this.canonicalNames = new Map();
         this.config = new Map();
         this.delegators = new Map();
         this.factories = new Map();

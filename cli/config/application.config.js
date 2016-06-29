@@ -10,7 +10,8 @@ module.exports = {
         module_paths: [
             './src',
             './module',
-            '/Volumes/Repositories/private/uidriven/flow/'
+            '/Volumes/Repositories/private/uidriven/flow/',
+            './node_modules'
         ],
         cache_dir: global.APPLICATION_ROOT + '/data/cache/application',
         config_cache_enabled: false,

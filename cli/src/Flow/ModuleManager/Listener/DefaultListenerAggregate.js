@@ -1,13 +1,16 @@
+import AbstractListener from "./AbstractListener";
+import AutoLoaderListener from "./AutoloaderListener";
+import InitTrigger from "./InitTrigger";
 import LocatorRegistrationListener from "./LocatorRegistrationListener";
+import OnBootstrapListener from "./OnBootstrapListener";
+import ModuleDependencyCheckerListener from "./ModuleDependencyCheckerListener";
 import ModuleLoaderListener from "./ModuleLoaderListener";
 import ModuleResolverListener from "./ModuleResolverListener";
-import AutoloaderListener from "./AutoloaderListener";
-import ModuleDependencyCheckerListener from "./ModuleDependencyCheckerListener";
-import InitTrigger from "./InitTrigger";
-import OnBootstrapListener from "./OnBootstrapListener";
 
 export default class DefaultListenerAggregate extends AbstractListener {
     constructor() {
+        super();
+
         this.arguments = new Map([
             ['configListener', null]
         ]);
@@ -34,7 +37,7 @@ export default class DefaultListenerAggregate extends AbstractListener {
 
         this.listeners.add(events.attach(new ModuleLoaderListener(options)));
         this.listeners.add(events.attach(ModuleEvent.EVENT_LOAD_MODULE_RESOLVE, new ModuleResolverListener));
-        this.listeners.add(events.attach(ModuleEvent.EVENT_LOAD_MODULE, new AutoloaderListener(options), 9000));
+        this.listeners.add(events.attach(ModuleEvent.EVENT_LOAD_MODULE, new AutoLoaderListener(options), 9000));
 
         if (options.checkDependencies) {
             this.listeners.add(events.attach(ModuleEvent.EVENT_LOAD_MODULE, new ModuleDependencyCheckerListener, 8000));

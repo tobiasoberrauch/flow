@@ -5,11 +5,15 @@ export default class ModuleManager {
         this.arguments = new Map([
             ['modulesAreLoaded', false],
             ['modules', new Set(modules)],
-            ['eventManager', eventManager],
-            ['modiöeCache', new Map()]
+            ['moduleCache', new Map()]
         ]);
+        this.eventManager = eventManager;
         this.moduleCache = new Map();
         this.loadFinished = 0;
+    }
+
+    set eventManager(eventManager) {
+        return this.arguments.set('eventManager', eventManager);
     }
 
     get eventManager() {
