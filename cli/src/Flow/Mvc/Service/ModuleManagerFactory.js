@@ -10,6 +10,7 @@ export default class ModuleManagerFactory {
             serviceLocator.setFactory('ServiceListener', 'Flow/Mvc/Service/ServiceListenerFactory');
         }
         let configuration = serviceLocator.get('ApplicationConfig');
+        debugger;
         let listenerOptions = new ListenerOptions(configuration.module_listener_options);
         let defaultListeners = new DefaultListenerAggregate(listenerOptions);
 
@@ -23,13 +24,13 @@ export default class ModuleManagerFactory {
 
         let events = serviceLocator.get('EventManager');
         events.attach(defaultListeners);
-        events.attach(serviceListener);
+        // events.attach(serviceListener);
 
         let moduleEvent = new ModuleEvent();
         moduleEvent.setParameter('ServiceManager', serviceLocator);
 
         let moduleManager = new ModuleManager(configuration.modules, events);
-        moduleManager.event = moduleEvent;
+        moduleManager.setEvent(moduleEvent);
 
         return moduleManager;
     }

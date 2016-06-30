@@ -54,7 +54,6 @@ export default class Event {
 
 
     setParameter(name, value) {
-        console.log(this.parameters);
         this.parameters.set(name, value);
 
         return this;

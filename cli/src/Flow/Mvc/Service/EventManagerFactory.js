@@ -1,9 +1,9 @@
-const EventManager = global.import('Flow/Mvc/Service/EventManager');
+import EventManager from '../../EventManager/EventManager';
 
 export default class {
     createService(serviceLocator) {
         let eventManager = new EventManager();
-        // eventManager.setSharedManager(serviceLocator.get('SharedEventManager'));
+        eventManager.sharedManager = serviceLocator.get('SharedEventManager');
 
         return eventManager;
     }

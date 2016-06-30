@@ -1,10 +1,6 @@
-const Event = global.import('Flow/EventManager/Event');
-
-export const EVENT_LOAD_MODULES = 'loadModules';
-export const EVENT_LOAD_MODULES_POST = 'loadModules.post';
+import Event from '../EventManager/Event';
 
 export default class ModuleEvent extends Event {
-
     constructor() {
         super();
 

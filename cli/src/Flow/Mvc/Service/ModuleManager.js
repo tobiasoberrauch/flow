@@ -2,38 +2,45 @@ import ModuleEvent from "../../ModuleManager/ModuleEvent";
 
 export default class ModuleManager {
     constructor(modules, eventManager) {
-        this.arguments = new Map([
-            ['modulesAreLoaded', false],
-            ['modules', new Set(modules)],
-            ['moduleCache', new Map()]
-        ]);
-        this.eventManager = eventManager;
+        this.modules = [];
+        this.eventManager = null;
+        this.modulesAreLoaded = false;
         this.moduleCache = new Map();
         this.loadFinished = 0;
+
+        this.setModules(modules);
+        this.setEventManager(eventManager);
     }
 
-    set eventManager(eventManager) {
-        return this.arguments.set('eventManager', eventManager);
+    setEventManager(eventManager) {
+        this.eventManager = eventManager;
+        this.attachDefaultListeners();
+
+        return this;
     }
 
-    get eventManager() {
-        return this.arguments.get('eventManager');
+    setModules(modules) {
+        this.modules = modules;
     }
 
-    get modules() {
-        return this.arguments.get('modules');
+    getEventManager() {
+        return this.eventManager;
     }
 
-    get modulesLoaded() {
-        return this.arguments.get('modulesAreLoaded');
+    getModules() {
+        return this.modules;
     }
 
-    get event() {
-        return this.arguments.get('event');
+    getModulesLoaded() {
+        return this.modulesAreLoaded;
     }
 
-    set event(event) {
-        this.arguments.set('event', event);
+    getEvent() {
+        return this.event;
+    }
+
+    setEvent(event) {
+        this.event = event;
     }
 
     loadModule(module) {
@@ -48,7 +55,7 @@ export default class ModuleManager {
 
         this.loadFinished++;
 
-        let result = this.eventManager.trigger(ModuleEvent.EVENT_LOAD_MODULE_RESOLVE, event, function (result) {
+        let result = this.eventManager.trigger('loadModule.resolve', event, function (result) {
             return (result);
         });
 
@@ -61,7 +68,7 @@ export default class ModuleManager {
 
         this.moduleCache.set(moduleName, module);
 
-        this.eventManager.trigger(ModuleEvent.EVENT_LOAD_MODULE, event);
+        this.eventManager.trigger('loadModule', event);
 
         this.loadFinished++;
 
@@ -73,24 +80,26 @@ export default class ModuleManager {
             return this;
         }
 
-        this.eventManager.trigger(ModuleEvent.EVENT_LOAD_MODULES, this.event);
-        this.eventManager.trigger(ModuleEvent.EVENT_LOAD_MODULES_POST, this.event);
+        this.eventManager.trigger('loadModules', this.event);
+        this.eventManager.trigger('loadModules.post', this.event);
 
         return this;
     }
 
     onLoadModules() {
+        debugger;
         if (this.modulesLoaded) {
             return this;
         }
-        for (let module of this.modules) {
-            this.loadModule(module);
+        for (let moduleName of this.modules) {
+            this.loadModule(moduleName);
         }
 
         this.modulesLoaded = true;
     }
 
     attachDefaultListeners() {
-        this.eventManager.attach(ModuleEvent.EVENT_LOAD_MODULES, [this, 'onLoadModules']);
+        debugger;
+        this.eventManager.attach('loadModules', [this, 'onLoadModules']);
     }
 }

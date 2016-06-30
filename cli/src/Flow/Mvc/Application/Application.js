@@ -1,5 +1,5 @@
-let ServiceManager = require('./ServiceManager/ServiceManager');
-let ServiceManagerConfig = require('./ServiceManager/ServiceManagerConfig');
+let ServiceManager = require('../../ServiceManager/ServiceManager');
+let ServiceManagerConfig = require('../../ServiceManager/ServiceManagerConfig');
 
 class Application {
     constructor() {
@@ -12,9 +12,9 @@ class Application {
         serviceManager.get('ModuleManager').loadModules();
 
         let listenersFromAppConfig = configuration.hasOwnProperty('listeners') ? configuration.listeners : [];
-        let config = serviceManager.get('Config');
+        // let config = serviceManager.get('Config');
         // let listenersFromConfigService = config.has('listeners') ? config.get('listeners') : [];
-        //
+
         // let listeners = listenersFromAppConfig.concat(listenersFromConfigService);
         //
         // return serviceManager.get('Application').bootstrap(listeners);

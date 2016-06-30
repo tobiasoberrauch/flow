@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-import Application from './src/Flow/Application';
+import Application from './src/Flow/Mvc/Application/Application';
 
 // const REQUEST_MICROTIME = new Date().getTime();
 // const APPLICATION_ENV = 'dev';

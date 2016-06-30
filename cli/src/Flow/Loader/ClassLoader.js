@@ -8,6 +8,7 @@ export default class ClassLoader {
     static load(classPath) {
         let className = global.APPLICATION_ROOT + '/src/' + classPath;
         let requiredClass = require(className);
+        debugger;
         if (requiredClass.hasOwnProperty('default')) {
             requiredClass = requiredClass.default;
         }
