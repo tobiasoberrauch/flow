@@ -12,7 +12,6 @@ var Container = function () {
         'yaml:json': yaml.parse,
         'json:yaml': yaml.stringify,
         'multiline': require('multiline'),
-        'fs:walk': require('../finder/walker'),
         'fs:glob': require('glob')
     };
 };

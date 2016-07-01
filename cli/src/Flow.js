@@ -1,6 +1,6 @@
 
-const Container = require('./container');
-const MethodFactory = require('../method-factory');
+const Container = require('./Container');
+// const MethodFactory = require('../method-factory');
 const util = require('util');
 const vfs = require('vinyl-fs');
 

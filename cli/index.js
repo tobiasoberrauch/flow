@@ -1,6 +1,5 @@
 'use strict';
 
-const Flow = require('./src/Flow/Flow');
-
+const Flow = require('./src/Flow');
 
 module.exports = new Flow();
