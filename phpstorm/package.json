@@ -1,0 +1,17 @@
+{
+  "name": "flow-phpstorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "glob": "^7.0.5",
+    "xml2js": "^0.4.16"
+  },
+  "devDependencies": {}
+}
